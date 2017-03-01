@@ -6,7 +6,7 @@ title: Binary Buildpack
 
 Use the binary buildpack for running arbitrary binary web servers.
 
-## <a id='pushing_apps'></a> Push an App ##
+## <a id='pushing-apps'></a> Push an App ##
 
 Unlike most other Cloud Foundry buildpacks, you must specify the binary 
 buildpack to use it when staging your binary file.
@@ -16,7 +16,7 @@ buildpack.
 For example:
 
 <pre class="terminal">
-$ cf push my_app -b https://github.com/cloudfoundry/binary-buildpack.git
+$ cf push myapp -b https://github.com/cloudfoundry/binary-buildpack.git
 </pre>
 
 You can provide Cloud Foundry with the shell command to execute your binary in
@@ -31,7 +31,7 @@ web: ./app
 * **Command line**: Use `cf push APP-NAME` with the `-c` option:
 
 <pre class="terminal">
-$ cf push my_app -c './app' -b binary-buildpack
+$ cf push myapp -c './app' -b binary-buildpack
 </pre>
 
 ## <a id='compiling'></a> Compile your Binary ##
@@ -83,17 +83,17 @@ To compile the above Go application on the rootfs, golang must be installed. `ap
 When deploying your binary to Cloud Foundry, use `cf push` with the `-s` option to specify the root filesystem it should run against.
 
 <pre class="terminal">
-$ cf push my_app -s (cflinuxfs2|lucid64)
+$ cf push myapp -s (cflinuxfs2|lucid64)
 </pre>
 
 To run docker on Mac OS X, we recommend [boot2docker](http://boot2docker.io/).
 
-## <a id='bosh_trusted_cert'></a>BOSH Configured Custom Trusted Certificate Support ##
+## <a id='bosh-trusted-cert'></a>BOSH Configured Custom Trusted Certificate Support ##
 
 Certificates deployed through [BOSH configured custom trusted certificates](http://bosh.io/docs/trusted-certs.html) exist in the 
 `/etc/ssl/certs` directory and can be used by binary applications.
 
-## <a id='help_support'></a>Help and Support ##
+## <a id='help-support'></a>Help and Support ##
 
 Join the #buildpacks channel in our [Slack community](http://slack.cloudfoundry.org/) if you need any further assistance.
 

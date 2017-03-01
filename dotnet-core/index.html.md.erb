@@ -11,7 +11,7 @@ This topic describes how to push Cloud Foundry apps using the .NET Core buildpac
   <strong>Note</strong>: The .NET Core buildpack only works with <a href="https://www.microsoft.com/net/core">ASP.NET Core</a>. For apps which are not based on this new toolchain, please refer to the legacy <a href="#legacy">.NET buildpack.</a>
 </p>
 
-## <a id='pushing_apps'></a> Push an App ##
+## <a id='pushing-apps'></a> Push an App ##
 
 Cloud Foundry automatically uses the .NET Core buildpack when:
 
@@ -21,7 +21,7 @@ Cloud Foundry automatically uses the .NET Core buildpack when:
 If your Cloud Foundry deployment does not have the .NET Core buildpack installed or the installed version is out of date, push your app with the `-b` option to specify the buildpack:
 
 <pre class="terminal">
-$ cf push MY_APP -b https://github.com/cloudfoundry/dotnet-core-buildpack.git
+$ cf push MY-APP -b https://github.com/cloudfoundry/dotnet-core-buildpack.git
 </pre>
 
 If you do not want to use latest stable beta release of the .NET CLI, specify the version in the `global.json` file.
@@ -116,7 +116,7 @@ public static void Main(string[] args)
   <strong>Note</strong>: The samples provided in the <a href="https://github.com/aspnet/cli-samples">cli-samples repo</a> and the templates provided by Visual Studio and Yeoman work with this buildpack after you have followed the steps above.</a>
 </p>
 
-## <a id='multiple_projects'></a>Deploy Apps with Multiple Projects ##
+## <a id='multiple-projects'></a>Deploy Apps with Multiple Projects ##
 
 To deploy an app that contains multiple projects, specify the project you want the buildpack to run as the main project.
 
@@ -131,7 +131,7 @@ project = src/MyApp.Web
 
 In this case, the buildpack automatically compiles the `MyApp.DAL` and `MyApp.Services` projects if the `project.json` file of the main project lists them as dependencies, `MyApp.Web`. The buildpack attempts to execute the main project with `dotnet run -p src/MyApp.Web`. You can also specify the path to `MyApp.Web` as `project = src/MyApp.Web/MyApp.Web.xproj`, assuming the project is an xproj project.
 
-## <a id='disconnected_environments'></a>Push an App in a Disconnected Environment ##
+## <a id='disconnected-environments'></a>Push an App in a Disconnected Environment ##
 
 For offline use, you can cache the binaries in `manifest.yml` with the buildpack.
 
@@ -146,7 +146,7 @@ You can push apps with their other dependencies following these steps:
 
 1. Push your app.
 
-## <a id='disabling_the_nuget_package_cache'></a>Disabling the NuGet Package Cache
+## <a id='disabling-nuget'></a>Disabling the NuGet Package Cache
 
 You may need to disable NuGet package caching, or clear NuGet packages cached in the staging environment, in one of the following scenarios:
 
