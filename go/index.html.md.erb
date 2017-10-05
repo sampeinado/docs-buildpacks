@@ -52,7 +52,6 @@ If you are using [godep](https://github.com/tools/godep) to package your depende
 
 When using godep, you can fix your Go version in  `GoVersion` key of the `Godeps/Godeps.json` file.
 
-<<<<<<< HEAD
 #### <a id='godeps-1.5'></a>Go 1.5 ####
 * [go 1.5 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/cf_spec/fixtures/go_app/src/go_app)
 
@@ -78,10 +77,6 @@ applications:
 * [go 1.6 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/cf_spec/fixtures/go_16_app/src/go_app)
 
 **NOTE**: if you are using godep with Go 1.6, you must set the `GO15VENDOREXPERIMENT` environment variable to 0, otherwise your app will not stage.
-=======
-#### <a id='godeps_1.6'></a>Go 1.6 ####
-* [Sample Go 1.6 app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go16/src/go_app)
->>>>>>> 2e1c814... resolves conf
 
 An example `Godeps/Godeps.json`:
 
@@ -108,13 +103,8 @@ If you are using [glide](https://github.com/Masterminds/glide) to specify and/or
 
 To vendor your dependencies before pushing, run `glide install`. This will generate a `vendor` directory and a `glide.lock` file specifying the latest compatible versions of your dependencies. A `glide.lock` is not required when deploying a non-vendored app. A `glide.lock` is required when pushing a vendored app.
 
-<<<<<<< HEAD
 ####<a id='glide-app'></a>Glide####
 * [glide sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/cf_spec/fixtures/go_app_with_glide/src/go_app_with_glide)
-=======
-####<a id='glide_app'></a>Glide####
-* [Sample Go app with Glide](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/glide_and_vendoring/src/glide_and_vendoring)
->>>>>>> 2e1c814... resolves conf
 
 An example `glide.yaml`:
 
@@ -138,7 +128,6 @@ applications:
       GOPACKAGENAME: go-online
 ```
 
-<<<<<<< HEAD
 #### <a id='go 1.5'></a>Go 1.5 ####
 **NOTE**: For Go 1.5, since native vendoring is turned off by default, you must set the environment variable `GO15VENDOREXPERIMENT` to 1 in your `manifest.yml` to use this feature.
 
@@ -158,13 +147,6 @@ applications:
 
 #### <a id='go-1.6'></a>Go 1.6 ####
 * [sample app](https://github.com/cloudfoundry/go-buildpack/tree/develop/cf_spec/fixtures/go_with_native_vendoring/src/go_app).
-=======
-#### <a id='go-1.6'></a>Go 1.6 ####
-
-* [Sample Go 1.6 app with native vendoring](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/vendored_custom_install_spec/src/go_app).
-
-Go 1.6 has vendoring enabled by default. Set the `GO15VENDOREXPERIMENT` environment variable to `0` to disable vendoring.
->>>>>>> 2e1c814... resolves conf
 
 An example `manifest.yml`:
 
@@ -178,26 +160,6 @@ applications:
      GOPACKAGENAME: github.com/example-org/example-project
 ```
 
-<<<<<<< HEAD
-=======
-#### <a id='godeps_1.7'></a>Go 1.7 and Later ####
-
-* [Sample Go 1.7 app with native vendoring](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/gopath_in_container/src/go_app).
-
-Go 1.7 and later always has vendoring enabled, and you cannot disable it with an environment variable.
-
-An example `manifest.yml`:
-
-```yaml
----
-applications:
- - name: my-app-name
-   command: example-project
-   env:
-     GOVERSION: go1.8
-     GOPACKAGENAME: app-package-name
-```
->>>>>>> 2e1c814... resolves conf
 
 ## <a id='passing-symbol-linker'></a>Pass a Symbol and String to the Linker ##
 
@@ -209,11 +171,7 @@ pushing code.
 This can be used to embed the commit sha, or other build specific data directly
 into the compiled executable.
 
-<<<<<<< HEAD
 For an example usage, see the relevant [fixture app](https://github.com/cloudfoundry/go-buildpack/tree/develop/cf_spec/fixtures/go1.6_app_using_ldflags/src/go_app).
-=======
-For example usage, see the relevant [fixture app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go16_ldflags/src/go_app).
->>>>>>> 2e1c814... resolves conf
 
 ## <a id='c-dependencies'></a>C Dependencies ##
 
