@@ -45,7 +45,7 @@ If you are using [godep](https://github.com/tools/godep) to package your depende
 When using godep, you can fix your Go version in  `GoVersion` key of the `Godeps/Godeps.json` file.
 
 #### <a id='godeps_1.5'></a>Go 1.5 ####
-* [go 1.5 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/cf_spec/fixtures/go_app/src/go_app)
+* [go 1.5 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go_app/src/go_app)
 
 An example `Godeps/Godeps.json`:
 
@@ -66,7 +66,7 @@ applications:
 ```
 
 #### <a id='godeps_1.6'></a>Go 1.6 ####
-* [go 1.6 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/cf_spec/fixtures/go_16_app/src/go_app)
+* [go 1.6 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go_16_app/src/go_app)
 
 **NOTE**: if you are using godep with Go 1.6, you must set the `GO15VENDOREXPERIMENT` environment variable to 0, otherwise your app will not stage.
 
@@ -95,25 +95,8 @@ If you are using the native Go vendoring system, which packages all local depend
 
 If you are using the `vendor/` directory for dependencies, you can set the Go version with the `GOVERSION` environment variable.
 
-#### <a id='go 1.5'></a>Go 1.5 ####
-**NOTE**: For Go 1.5, since native vendoring is turned off by default, you must set the environment variable `GO15VENDOREXPERIMENT` to 1 in your `manifest.yml` to use this feature.
-
-If you are using the `vendor/` directory for dependencies, you can set the Go version with the `GOVERSION` environment variable.
-
-An example `manifest.yml`:
-
-```yaml
----
-applications:
-  - name: my-app-name
-    env:
-      GOVERSION: go1.5
-      GOPACKAGENAME: app-package-name
-      GO15VENDOREXPERIMENT: 1
-```
-
 #### <a id='go_1.6'></a>Go 1.6 ####
-* [sample app](https://github.com/cloudfoundry/go-buildpack/tree/develop/cf_spec/fixtures/go_with_native_vendoring/src/go_app).
+* [sample app](https://github.com/cloudfoundry/go-buildpack/tree/develop/fixtures/go_with_native_vendoring/src/go_app).
 
 An example `manifest.yml`:
 
@@ -138,7 +121,7 @@ pushing code.
 This can be used to embed the commit sha, or other build specific data directly
 into the compiled executable.
 
-For an example usage, see the relevant [fixture app](https://github.com/cloudfoundry/go-buildpack/tree/develop/cf_spec/fixtures/go1.6_app_using_ldflags/src/go_app).
+For an example usage, see the relevant [fixture app](https://github.com/cloudfoundry/go-buildpack/tree/develop/fixtures/go1.6_app_using_ldflags/src/go_app).
 
 ## <a id='c_dependencies'></a>C dependencies ##
 
