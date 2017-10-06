@@ -44,27 +44,6 @@ If you are using [godep](https://github.com/tools/godep) to package your depende
 
 When using godep, you can fix your Go version in  `GoVersion` key of the `Godeps/Godeps.json` file.
 
-#### <a id='godeps_1.5'></a>Go 1.5 ####
-* [go 1.5 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go_app/src/go_app)
-
-An example `Godeps/Godeps.json`:
-
-```json
-{
-	"ImportPath": "go_app",
-	"GoVersion": "go1.5",
-	"Deps": []
-}
-```
-
-An example `manifest.yml`:
-
-```yaml
----
-applications:
-  - name: my-app-name
-```
-
 #### <a id='godeps_1.6'></a>Go 1.6 ####
 * [go 1.6 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go_16_app/src/go_app)
 
