@@ -107,23 +107,6 @@ applications:
       GOPACKAGENAME: go-online
 ```
 
-#### <a id='go 1.5'></a>Go 1.5 ####
-**NOTE**: For Go 1.5, since native vendoring is turned off by default, you must set the environment variable `GO15VENDOREXPERIMENT` to 1 in your `manifest.yml` to use this feature.
-
-If you are using the `vendor/` directory for dependencies, you can set the Go version with the `GOVERSION` environment variable.
-
-An example `manifest.yml`:
-
-```yaml
----
-applications:
-  - name: my-app-name
-    env:
-      GOVERSION: go1.5
-      GOPACKAGENAME: app-package-name
-      GO15VENDOREXPERIMENT: 1
-```
-
 #### <a id='go_1.6'></a>Go 1.6 ####
 * [sample app](https://github.com/cloudfoundry/go-buildpack/tree/develop/fixtures/go_with_native_vendoring/src/go_app).
 
