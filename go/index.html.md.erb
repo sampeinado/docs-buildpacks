@@ -45,7 +45,7 @@ If you are using [godep](https://github.com/tools/godep) to package your depende
 When using godep, you can fix your Go version in  `GoVersion` key of the `Godeps/Godeps.json` file.
 
 #### <a id='godeps_1.6'></a>Go 1.6 ####
-* [go 1.6 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go_16_app/src/go_app)
+* [go 1.6 sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go16/src/go_app)
 
 **NOTE**: if you are using godep with Go 1.6, you must set the `GO15VENDOREXPERIMENT` environment variable to 0, otherwise your app will not stage.
 
@@ -75,7 +75,7 @@ If you are using the native Go vendoring system, which packages all local depend
 If you are using the `vendor/` directory for dependencies, you can set the Go version with the `GOVERSION` environment variable.
 
 #### <a id='go_1.6'></a>Go 1.6 ####
-* [sample app](https://github.com/cloudfoundry/go-buildpack/tree/develop/fixtures/go_with_native_vendoring/src/go_app).
+* [sample app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/native_vendoring).
 
 An example `manifest.yml`:
 
@@ -100,7 +100,7 @@ pushing code.
 This can be used to embed the commit sha, or other build specific data directly
 into the compiled executable.
 
-For an example usage, see the relevant [fixture app](https://github.com/cloudfoundry/go-buildpack/tree/develop/fixtures/go1.6_app_using_ldflags/src/go_app).
+For an example usage, see the relevant [fixture app](https://github.com/cloudfoundry/go-buildpack/tree/master/fixtures/go16_ldflags/src/go_app).
 
 ## <a id='c_dependencies'></a>C dependencies ##
 
