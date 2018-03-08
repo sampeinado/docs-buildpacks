@@ -96,12 +96,12 @@ You can find the source for the buildpack on GitHub:
 
 If you need to use a proxy to download dependencies during staging, you can set
 the `http_proxy` and/or `https_proxy` environment variables. For more information, see
-the [Proxy Usage Docs](http://docs.cloudfoundry.org/buildpacks/proxy-usage.html).
+the [Proxy Usage Docs](../proxy-usage.html).
 
 ## <a id='bosh_trusted_cert'></a>BOSH Configured Custom Trusted Certificate Support ##
 
 For versions of PHP 5.6.0 and later, the default certificate location is `/usr/lib/ssl/certs`, which symlinks to `/etc/ssl/certs`.
-Your platform operator can configure the platform to [add the custom certificates into the application container](https://docs.cloudfoundry.org/adminguide/trusted-system-certificates.html).
+Your platform operator can configure the platform to [add the custom certificates into the application container](../../adminguide/trusted-system-certificates.html).
 
 ## <a id='help_support'></a>Help and Support ##
 
@@ -136,4 +136,4 @@ The Cloud Foundry PHP Buildpack is released under version 2.0 of the [Apache Lic
 ["offline" mode]:https://github.com/cloudfoundry/php-buildpack/blob/master/docs/binaries.md#bundling-binaries-with-the-build-pack
 [phalcon]:https://github.com/dmikusa-pivotal/cf-ex-phalcon
 [composer]:https://github.com/dmikusa-pivotal/cf-ex-composer
-[Proxy Support]:http://docs.cloudfoundry.org/buildpacks/proxy-usage.html
+[Proxy Support]:../proxy-usage.html
