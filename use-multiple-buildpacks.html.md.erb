@@ -13,7 +13,7 @@ For more information about pushing applications to Cloud Foundry, see the [Deplo
 
 To push an application with multiple buildpacks using the Cloud Foundry Command Line Interface (cf CLI), perform the following procedure:
 
-1. Ensure you are using the cf CLI v6.32.0+:
+1. Ensure you are using the cf CLI v6.34.1 or later:
   <pre class="terminal">$ cf version
   cf version 6.32.0+0191c33d9.2017-09-26
   </pre>
@@ -34,7 +34,7 @@ For more information about V3 commands, see the [Using Experimental cf CLI Comma
 * `v3-push` currently only supports a subset of features of `push`. In particular, it does not support the following:
   * application manifests
   * flags to set the stack or modify the default mapped route 
-  <p class="note"><strong>Note</strong>: As of CF CLI v6.33.0, `v3-push` supports exclusions from a `.cfignore` file. 
+  <p class="note"><strong>Note</strong>: In cf CLI v6.34.1 and later, `v3-push` supports exclusions from a `.cfignore` file. 
   </p>
 * If you use an application manifest, you cannot include the `buildpack` key or future pushes will not function properly.
 * You can use the following commands to update the configuration of an application started with `v3-push`: 
