@@ -11,11 +11,12 @@ For more information about how buildpacks work, see the [Understanding Buildpack
 
 ## <a id='packaging-custom-buildpacks'></a> Package Custom Buildpacks ##
 
-Cloud Foundry buildpacks can work with limited or no Internet connectivity. The [Buildpack Packager](https://github.com/cloudfoundry-incubator/buildpack-packager) RubyGem gives the same flexibility to custom buildpacks, enabling them to work in partially or completely disconnected environments.
+Cloud Foundry buildpacks can work with limited or no Internet connectivity.
+The [buildpack-packager](https://github.com/cloudfoundry/libbuildpack/tree/master/packager/buildpack-packager) gives the same flexibility to custom buildpacks, enabling them to work in partially or completely disconnected environments.
 
 ### <a id='use-buildpack-packager'></a> Use the Buildpack Packager
 
-1. Ensure that you have installed the [Buildpack Packager](https://github.com/cloudfoundry-incubator/buildpack-packager) RubyGem.
+1. Ensure that you have installed the [buildpack-packager](https://github.com/cloudfoundry/libbuildpack/tree/master/packager).
 1. Create a manifest.yml in your buildpack.
 1. Run the packager in cached mode: 
   <pre class="terminal">$ buildpack-packager build -cached -any-stack</pre>
