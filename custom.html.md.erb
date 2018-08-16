@@ -9,15 +9,30 @@ This topic describes how to create custom buildpacks for <%= vars.app_runtime_fi
 
 For more information about how buildpacks work, see the [Understanding Buildpacks](understand-buildpacks.html) topic.
 
+## Developing A Custom Buildpack ##
+
+### <a id='use-buildpack-packager'></a> Use the Buildpack Packager
+
+The buildpack-packager tool can create the skeleton of a buildpack for you.
+This command will create a new directory and populate it with files every buildpack needs -- scripts for supply/finalize/release and for running tests. 
+
+1. Ensure that you have installed the [buildpack-packager](https://github.com/cloudfoundry/libbuildpack/tree/master/packager).
+1. Run use the buildpack-packager to create the standard structure of a buildpack: 
+  <pre class="terminal">$ buildpack-packager init <name of buildpack></pre>
+
+This tool assumes that you want to write your buildpack in go and use libbuildpack, the library used to implement the <%= vars.app_runtime_first %> official buildpacks.
+
 ## <a id='packaging-custom-buildpacks'></a> Package Custom Buildpacks ##
 
 <%= vars.app_runtime %> buildpacks can work with limited or no Internet connectivity.
 The [buildpack-packager](https://github.com/cloudfoundry/libbuildpack/tree/master/packager/buildpack-packager) gives the same flexibility to custom buildpacks, enabling them to work in partially or completely disconnected environments.
 
-### <a id='use-buildpack-packager'></a> Use the Buildpack Packager
+The buildpack-packager can create buildpack zip files in either `cached` or `uncached` mode. When `cached`, the tool will download and the archive will contain all of the dependencies listed in the buildpack manifest. When uncached, none of those dependenceis will be downloaded or included.
+
+### <a id='use-buildpack-packager'></a> Using the Buildpack Packager
 
 1. Ensure that you have installed the [buildpack-packager](https://github.com/cloudfoundry/libbuildpack/tree/master/packager).
-1. Create a manifest.yml in your buildpack.
+1. Create a manifest.yml in your buildpack that lists the dependencies of your buildpack.
 1. Run the packager in cached mode: 
   <pre class="terminal">$ buildpack-packager build -cached -any-stack</pre>
 
@@ -37,9 +52,21 @@ After you have packaged your buildpack using `buildpack-packager` you can use th
 
 <%=vars.link_adminguide_buildpack%>
 
+## Writing a Manifest ##
+
+### Language ###
+
+### Listing Dependencies ###
+
+### Include Files ###
+
+### Prepackage ###
+
+### Dependency Deprecation Dates ###
+
 ### <a id='specifying-default-versions'></a> Specify a Default Version ###
 
-As of `buildpack-packager` [version 2.3.0](https://github.com/cloudfoundry/buildpack-packager/releases/tag/v2.3.0), you can specify the default version for a dependency by adding a `default_versions` object to the `manifest.yml` file.
+You can specify the default version for a dependency by adding a `default_versions` object to the `manifest.yml` file.
 The `default_versions` object has two properties, `name` and `version`. For example:
 
 ```yml
