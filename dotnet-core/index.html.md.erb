@@ -11,13 +11,13 @@ This topic describes how to push Cloud Foundry apps using the .NET Core buildpac
 
 ## <a id='pushing-apps'></a> Push an App ##
 
-Cloud Foundry automatically uses the .NET Core buildpack when one or more of the following conditions are met:
+<%= vars.product_windows %> automatically uses the .NET Core buildpack when one or more of the following conditions are met:
 
 - The pushed app contains one or more `*.csproj` or `*.fsproj` files.
 - The pushed app contains one or more `project.json` files.
 - The app is pushed from the output directory of the `dotnet publish` command.
 
-If your Cloud Foundry deployment does not have the .NET Core buildpack installed or the installed version is out of date, push your app with the `-b` option to specify the buildpack:
+If your <%= vars.product_windows %> deployment does not have the .NET Core buildpack installed or the installed version is out of date, push your app with the `-b` option to specify the buildpack:
 
 <pre class="terminal">
 $ cf push MY-APP -b https://github.com/cloudfoundry/dotnet-core-buildpack.git
@@ -25,7 +25,7 @@ $ cf push MY-APP -b https://github.com/cloudfoundry/dotnet-core-buildpack.git
 
 Specify any non-default package sources in the `NuGet.Config` file.
 
-For a basic example, see this [Hello World sample](https://github.com/IBM-Bluemix/aspnet-core-helloworld).
+For a basic example app, see [ASP.NET Core getting started application](https://github.com/IBM-Bluemix/aspnet-core-helloworld) in GitHub.
 
 ## <a id='cli-tools'></a> .NET Core SDKs ##
 
@@ -42,7 +42,7 @@ Currently, the .NET Core buildpack includes both types of SDKs. If the pushed ap
 
 ## <a id='port'></a>Configure the Listen Port ##
 
-For your .NET Core app to work on Cloud Foundry, you must modify the `Main` method to configure the app to listen on the port specified by the `$PORT` environment variable, which Cloud Foundry sets automatically.
+For your .NET Core app to work on <%= vars.product_windows %>, you must modify the `Main` method to configure the app to listen on the port specified by the `$PORT` environment variable. <%= vars.product_windows %> sets this environment variable automatically.
 
 1. Open the file that contains your `Main` method.
 
@@ -73,7 +73,7 @@ For your .NET Core app to work on Cloud Foundry, you must modify the `Main` meth
 1. Add `Microsoft.Extensions.Configuration.CommandLine` as a dependency using one of the following:
     - `project.json`:
 
-		```json
+		```
         "Microsoft.Extensions.Configuration.CommandLine": "VERSION",
         ```
     - `*.csproj`:
@@ -84,7 +84,7 @@ For your .NET Core app to work on Cloud Foundry, you must modify the `Main` meth
         </PackageReference>
         ```
 
-    where VERSION is the version of the package to use. Valid versions can be found on `https://www.nuget.org`.
+    In the above examples, replace `VERSION` with the version of the package to use. Valid versions can be found at https://www.nuget.org.
 
 1. If your app requires any other files at runtime, such as JSON configuration files, add them to the `include` section of `copyToOutput`.
 
@@ -109,12 +109,14 @@ public static void Main(string[] args)
 }
 ```
 
-## <a id='specify-version'></a>Specify a .NET Framework Version ##
+## <a id='specify-version'></a>Specify a .NET Framework Version
 
-Lock the .NET Framework to a minor version. Do not lock to a patch version, because 
+Specify a minor version of the .NET Framework.
+Do not specify a patch version, because
 buildpacks contain only the two most recent patch versions of each minor version.
 
-To lock the .NET Framework version in a `.csproj` app:
+###.csproj Apps
+Add the following to a `.csproj` app to lock the .NET Framework version:
 
 ```
   <ItemGroup>
@@ -135,7 +137,7 @@ To lock the .NET Framework version in a `project.json` app:
   }
 ```
 
-## <a id='multiple-projects'></a>Deploy Apps with Multiple Projects ##
+## <a id='multiple-projects'></a>Deploy Apps with Multiple Projects
 
 To deploy an app that contains multiple projects, you must specify a main project for the buildpack to run. Create a `.deployment` file in the root folder of the app which sets the path to the main project as follows:
 
@@ -144,9 +146,13 @@ To deploy an app that contains multiple projects, you must specify a main projec
 project = <main project>
 ```
 
-1. If the app uses `project.json`, set `project` to the directory containing the `project.json` file of the main project.
+### project.json Apps
 
-2. If the app uses MSBuild, set `project` to the `*.csproj` or `*.fsproj` file of the main project.
+If the app uses `project.json`, set `project` to the directory containing the `project.json` file of the main project.
+
+### MSBuild Apps
+
+If the app uses MSBuild, set `project` to the `*.csproj` or `*.fsproj` file of the main project.
 
 For example, if an app using MSBuild contains three projects in the `src` folder, the main project `MyApp.Web`, `MyApp.DAL`, and `MyApp.Services`, format the `.deployment` file as follows:
 
@@ -157,7 +163,7 @@ project = src/MyApp.Web/MyApp.Web.csproj
 
 In this example, the buildpack automatically compiles the `MyApp.DAL` and `MyApp.Services` projects if the `MyApp.Web.csproj` file of the main project lists them as dependencies, `MyApp.Web`. The buildpack attempts to execute the main project with `dotnet run -p src/MyApp.Web/MyApp.Web.csproj`.
 
-## <a id='disconnected-environments'></a>Push an App in a Disconnected Environment ##
+## <a id='disconnected-environments'></a>Push an App in a Disconnected Environment
 
 For offline use, you can cache the binaries in `manifest.yml` with the buildpack.
 
