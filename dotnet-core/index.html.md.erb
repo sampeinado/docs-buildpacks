@@ -9,7 +9,7 @@ This topic describes how to push Cloud Foundry apps using the .NET Core buildpac
 
 <p class="note"><strong>Note</strong>: The .NET Core buildpack works only with <a href="https://www.microsoft.com/net/core">ASP.NET Core</a>.</p>
 
-<%= vars.product_windows_full %> automatically uses the .NET Core buildpack when one or more of the following conditions are met:
+Cloud Foundry automatically uses the .NET Core buildpack when one or more of the following conditions are met:
 
 - The pushed app contains one or more `*.csproj` or `*.fsproj` files.
 - The app is pushed from the output directory of the `dotnet publish` command.
@@ -30,7 +30,7 @@ Follow the steps below to push your app.
     usage: 1GB x 1 instances
     urls: my-app.example.com
     </pre>
-    If your <%= vars.product_windows %> deployment does not have the .NET Core buildpack installed or the installed version is out of date, push your app with the `-b` option to specify the buildpack:
+    If your deployment does not have the .NET Core buildpack installed or the installed version is out of date, push your app with the `-b` option to specify the buildpack:
 
     <pre>cf push APP-NAME -b https://github.com/cloudfoundry/dotnet-core-buildpack.git</pre>
 
@@ -271,9 +271,9 @@ and <code>2.1.x</code> assemblies are released in the <code>2.1.300</code> and a
 
 ## <a id='port'></a>Configure the Listen Port ##
 
-For your .NET Core app to work on <%= vars.product_windows %>,
+For your .NET Core app to work on Cloud Foundry,
 you must modify the `Main` method to configure the app to listen on the port specified by the `$PORT` environment variable.
-<%= vars.product_windows %> sets this environment variable automatically.
+Cloud Foundry sets this environment variable automatically.
 
 1. Open the file that contains your `Main` method.
 
