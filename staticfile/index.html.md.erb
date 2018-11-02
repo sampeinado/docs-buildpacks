@@ -109,60 +109,86 @@ urls: hello.example.com
 </tr>
 </table>
 
+## <a id='configure'></a>Configuring the Buildpack
 
-## <a id='configure-and-push'></a>Configuring the Buildpack and Pushing the App
-
-This section describes ways you can configure the Staticfile buildpack options and how to push your Staticfile app.
-
-### <a id='config-options'></a>Configuration Options
+This section describes configuration options available for the Staticfile buildpack.
 
 This table describes aspects of the Staticfile buildpack that you can configure using the [Configure Your App](#config-process) details in the next table</a>.
 
 <table border='1' class='nice'>
 <tr>
-  <th>Options</th>
+  <th>Option</th>
   <th>Description</th>
+  <th>Staticfile Configuration</th>
 </tr>
 
 <tr>
   <td id="root">Alternative root</td>
-  <td>Allows you to specify a root directory other than the default, which is <code>index.html</code>.
-  For example, you can specify that the buildpack serves index.html and all other assets from an alternate folder where your HTML/CSS/JavaScript files exist, such as <code>dist/</code> or <code>public/</code>.</td>
+  <td>Specifies a root directory other than the default. Use this option to serve <code>index.html</code> and other assets, such as HTML, CSS, or JavaScript files, from a location other than the root directory.
+  For example, you can specify an alternate folder such as <code>dist/</code> or <code>public/</code>.</td>
+ </td>
+    <td><code>root: YOUR-DIRECTORY-NAME</strong></code><br><br>For example:<br><strong><code>root: public</code></strong></td>
 </tr>
 <tr>
   <td id="dir-list">Directory list</td>
-  <td>An HTML page that displays a directory index for your site. A sample of a directory list is shown below.<br>
+  <td>Displays an HTML page that shows a directory index for your site. A sample of a directory list is shown below.<br>
  <img src="../images/directory-index.png" alt="directory index" style="margin: 20px"><br>
-    If your site is missing an index.html, your app displays a directory list instead of the standard 404 error page.</td>
-</tr>
-
-<tr>
-  <td id="ssi">SSI</td>
-  <td>Server Side Includes (SSI) allows you to show the contents of files on a web page on the web server.
-For general information about SSI, see the <a href="https://en.wikipedia.org/wiki/Server_Side_Includes">Server Side Includes</a> entry on Wikipedia.</td>
-<tr>
-  <td id="pushstate">Pushstate routing</td>
-  <td>Keeps browser-visible URLs clean for client-side JavaScript apps that serve multiple routes.
-    For example, pushstate routing allows a single JavaScript file route to multiple anchor-tagged URLs
-    that look like <code>/some/path1</code> instead of <code>/some#path1</code>.
+    If your site is missing an <code>index.html</code> file, your app displays a directory list instead of the standard 404 error page.</td>
+  <td>
+   <code>directory: visible</code>
   </td>
 </tr>
 
 <tr>
-  <td id="gzip">GZip file serving and compressing</td>
-<td>The <a href="http://nginx.org/en/docs/http/ngx_http_gzip_static_module.html">gzip_static</a>
-and <a href="http://nginx.org/en/docs/http/ngx_http_gunzip_module.html">gunzip</a> modules are enabled by default. This allows NGINX to serve files stored in compressed GZ format, and to uncompresses them for clients that do not support compressed content or responses. <br>You may want to disable compression in particular circumstances, for example if serving to very old browser clients.</td>
+  <td id="ssi">SSI</td>
+  <td>Enables Server Side Includes (SSI), which allow you to embed the contents of one or more files into a web page on a web server.
+For general information about SSI, see the <a href="https://en.wikipedia.org/wiki/Server_Side_Includes">Server Side Includes</a> entry on Wikipedia.</td>
+  <td><code>ssi: enabled</strong></code> </td>
+</tr>
+<tr>
+  <td id="pushstate">Pushstate routing</td>
+  <td>Keeps browser-visible URLs clean for client-side JavaScript apps that serve multiple routes.
+    For example, pushstate routing allows a single JavaScript file to route to multiple anchor-tagged URLs
+    that look like <code>/some/path1</code> instead of <code>/some#path1</code>.
+  </td>
+  <td><code>pushstate: enabled</code>
+  </td>
+</tr>
+
+<tr>
+  <td id="gzip">GZip file serving and compression</td>
+<td>Disables <a href="http://nginx.org/en/docs/http/ngx_http_gzip_static_module.html">gzip_static</a>
+and <a href="http://nginx.org/en/docs/http/ngx_http_gunzip_module.html">gunzip</a> modules, which are enabled by default. 
+These modules allow NGINX to serve files stored in compressed GZ format and to uncompress them for clients that do not support compressed content or responses.<br><br>You may want to disable compression under particular circumstances such as serving 
+content to very old browser clients.</td>
+<td><code>gzip: off</code>
 </tr>
 
 <tr>
   <td id="basic-auth">Basic authentication</td>
-  <td>Allows you to place simple access controls on your app.<br>
-      <img src="../images/basicauth.png" style="margin: 20px"></td>
+  <td>Allows you to enable basic authentication for your app or website. 
+    A sample basic authentication dialog box is shown below:<br><br>
+      <img src="../images/basicauth.png">
+      You can create a hashed username and password pair for each user 
+      by using a site like <a href="http://www.htaccesstools.com/htpasswd-generator/">Htpasswd Generator</a></td>
+   <td>Add a new <code>Staticfile.auth</code> to the root or alternative root directory. 
+    In the file add one or more username and password entries in the following format.
+  <br>
+  <code>USERNAME:HASHED_PASSWORD</code>
+  <br><br>For example: 
+  <strong><code>
+  bob:$apr1$DuUQEQp8$ZccZCHQElNSjrgerwSFC0
+  <br>alice:$apr1$4IRQGcD/$UMFLnIHSD9ZHJ86TR4zx</code></strong>
+    </td>
 </tr>
 
 <tr>
   <td>Proxy support</td>
-  <td>Allows you to use a proxy to download dependencies during staging.</td>
+  <td>Allows you to use a proxy when downloading dependencies during the staging of your app.</td>
+  <td><code>http_proxy: HTTP_URL</code><br>
+    <code>https_proxy: HTTPS_URL</code>
+    <br><br>For example: <strong><code>http_proxy: http://www.example.com/</code>
+    <br><code>https_proxy: https://www.example.com/</code></strong></td>
 </tr>
 
 <tr>
@@ -231,6 +257,13 @@ and <a href="http://nginx.org/en/docs/http/ngx_http_gunzip_module.html">gunzip</
 </tr>
 </table>
 
+###<a id="basic_auth"></a> Add Basic Authentication
+
+1. 
+
+1. Create a file named <code>Staticfile.auth</code> in the root directory or alternative root directory, and add one or more user/password lines to it.
+    For example,<br> <code>bob:$apr1$DuUQEQp8$ZccZCHQElNSjrgerwSFC0<br>alice:$apr1$4IRQGcD/$UMFLnIHSD9ZHJ86TR4zx</code>
+
 ### <a id='config-process'></a>Configure Your App
 
 1. In the root directory of your app, create an empty file named `Staticfile`:
@@ -246,8 +279,7 @@ $ touch Staticfile
     </tr>
 
     <tr>
-    <td>serve <code>index.html</code> and other assets from a location other than the root directory</tc>
-    <td>add this line to the <code>Staticfile</code>:<br><code><strong>root: YOUR-DIRECTORY-NAME</strong></code><br><br>For example, <code>root: public</code></td>
+    <td>
     <td><a href="#root">Alternative root</a></td>
     </tr>
 
@@ -259,7 +291,7 @@ $ touch Staticfile
 
     <tr>
     <td>enable SSI</td>
-    <td>add this line to the <code>Staticfile</code>:<br><code><strong>ssi: enabled</strong></code></td>
+    <td>add this line to the <code>Staticfile</code>:<br></td>
     <td><a href="#ssi">SSI</a></td>
     </tr>
 
@@ -271,16 +303,13 @@ $ touch Staticfile
 
     <tr>
     <td>disable gzip_static and gunzip modules</td>
-    <td>add this line to the <code>Staticfile</code>:<br><code><strong>gzip: off</strong></code></td>
+    <td>add this line to the <code>Staticfile</code>:<br></td>
     <td><a href="#gzip">GZip</a></td>
     </tr>
 
     <tr>
-    <td valign="top">enable basic authentication for your app or website</td>
-    <td>  1. Create a hashed username and password pair for each user, using a site like <a href="http://www.htaccesstools.com/htpasswd-generator/">Htpasswd Generator</a><br>
-  &#50;. Create a file named <code>Staticfile.auth</code> in the root directory or alternative root directory, and add one or more user/password lines to it.
-    For example,<br> <code>bob:$apr1$DuUQEQp8$ZccZCHQElNSjrgerwSFC0<br>alice:$apr1$4IRQGcD/$UMFLnIHSD9ZHJ86TR4zx</code><br>
-    </td>
+    <td valign="top"></td>
+   
     <td><a href="#basic-auth">Basic authentication</a></td>
     </tr>
 
@@ -338,7 +367,7 @@ $ touch Staticfile
     </tr>
     </table>
 
-### <a id='custom_nginx_configuration'></a> Push Your App ###
+## <a id='push_app'></a> Pushing the App ###
 
 Follow the steps below to push your application.
 
