@@ -227,8 +227,7 @@ and <a href="http://nginx.org/en/docs/http/ngx_http_gunzip_module.html">gunzip</
 
 <tr>
   <td>Custom NGINX configuration</td>
-  <td>Additional NGINX configuration can be applied, such as mapping file extensions to mime types.
-      See the <a href="https://www.nginx.com/resources/wiki/start/topics/examples/full/">NGINX documentation</a> for examples.</td>
+  <td>If you require additional custom NGINX configuration you should use the <a href="../nginx/index.html">NGINX Buildpack</a></td>
 </tr>
 </table>
 
@@ -327,9 +326,15 @@ $ touch Staticfile
     </tr>
 
     <tr>
+    <td>specify additional MIME types</td>
+    <td>add a <code><strong>mime.types</strong></code> file to your root folder, or to the alternate root folder if you specified one.</td>
+    <td><a href="https://www.nginx.com/resources/wiki/start/topics/examples/full/#mime-types">NGINX documentation</a></td>
+    </tr>
+
+    <tr>
     <td>make additional configuration changes to NGINX</td>
-    <td>add <code><strong>nginx.conf</strong></code> and <code><strong>mime.types</strong></code> files to your root folder, or to the alternate root folder if you specified one.</td>
-    <td><a href="https://www.nginx.com/resources/wiki/start/topics/examples/full/">NGINX documentation</a></td>
+    <td>use the NGINX Buildpack instead of the Staticfile buildpack.</td>
+    <td><a href="../nginx/index.html">NGINX Buildpack</a></td>
     </tr>
     </table>
 
@@ -373,10 +378,8 @@ For different examples of apps that use the Staticfile buildpack, see the [fixtu
 
 A number of channels exist where you can get more help when using the Staticfile buildpack, or with developing your own Staticfile buildpack.
 
-* **Staticfile Buildpack Repository in Github**: Find more information about using and extending the Staticfile buildpack in [GitHub repository](https://github.com/cloudfoundry/staticfile-buildpack).
+* **Staticfile Buildpack Repository in GitHub**: Find more information about using and extending the Staticfile buildpack in [GitHub repository](https://github.com/cloudfoundry/staticfile-buildpack).
 
 * **Release Notes**: Find current information about this buildpack on the Staticfile buildpack [release page](https://github.com/cloudfoundry/staticfile-buildpack/releases) in GitHub.
 
 * **Slack**: Join the #buildpacks channel in the [Cloud Foundry Slack community](http://slack.cloudfoundry.org/).
-
-
